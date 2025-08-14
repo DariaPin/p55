@@ -7,14 +7,14 @@ from locators_all.locators import DoskaLocators
 from project_source.helpers import get_sign_up_data
 from project_source.data import existing_user_data
 from project_source.data import get_sign_up_data_existing_user
+from constance_all.constance import Const
 
 class TestLogout:
 
     def test_logout(self, chrome):
         chrome.find_element(*DoskaLocators. LOGIN_AND_REGISTRATION_BUTTON).click()
-        email_data, password_data = get_sign_up_data_existing_user()
-        chrome.find_element(*DoskaLocators.EMAIL_FIELD).send_keys(email_data)
-        chrome.find_element(*DoskaLocators.PASSWORD_FIELD).send_keys(password_data)
+        chrome.find_element(*DoskaLocators.EMAIL_FIELD).send_keys(Const.EMAILDATA)
+        chrome.find_element(*DoskaLocators.PASSWORD_FIELD).send_keys(Const.PASSWORDDATA)
         chrome.find_element(*DoskaLocators.ENTER).click()
 
         exit = WebDriverWait(chrome, 5).until(expected_conditions.presence_of_element_located(DoskaLocators.EXIT))
